@@ -1,97 +1,90 @@
-# Spotter Truck Trip Planner
+# 🚛 Spotter Truck Trip Planner
 
-A full-stack truck trip planning application built as part of the Spotter Full Stack Developer assessment.
+A full-stack truck trip planning application built as part of the **Spotter Full Stack Developer Assessment**.
 
-The application plans a truck trip based on **FMCSA Hours-of-Service (HOS) regulations**, calculates the route and driving time, identifies required fuel/rest stops, and generates **ELD Daily Log Sheets** for the planned trip.
-
----
-
-## Features
-
-- 🚛 Truck trip planning
-- 📍 Current location, pickup, and drop-off locations
-- 🗺️ Route calculation using OpenStreetMap-based services
-- 📏 Total route distance
-- ⏱️ Estimated driving duration
-- ⛽ Automatic fuel-stop planning
-- 💤 HOS-compliant rest/off-duty periods
-- ☕ 30-minute HOS break handling
-- 🔄 34-hour cycle restart handling
-- 📊 70/8 cycle-hour tracking
-- 📋 ELD Daily Log generation
-- 🗺️ Interactive route map
-- 📱 Responsive React frontend
-- ⚡ Django REST API backend
+The application plans a truck trip based on **FMCSA Hours-of-Service (HOS) rules**, calculates the driving route and duration, schedules required breaks and rest periods, plans fuel stops, tracks the driver's cycle hours, and generates **ELD Daily Log Sheets** for the resulting trip schedule.
 
 ---
 
-## Tech Stack
+## 📌 Overview
 
-### Frontend
+The Spotter Truck Trip Planner is designed to help a dispatcher or driver understand how a trip can be completed while respecting operational and Hours-of-Service constraints.
 
-- React
-- Vite
-- React Router
-- React Leaflet
-- Leaflet
-- CSS
+The user provides:
 
-### Backend
+- Current driver location
+- Pickup location
+- Drop-off location
+- Hours already used in the driver's current cycle
 
-- Python
-- Django
-- Django REST Framework
-- Requests
+The system then:
 
-### Routing & Geocoding
-
-- OpenStreetMap
-- Nominatim
-- OSRM
-
-### Deployment
-
-- Frontend: Vercel
-- Backend: Render
+1. Geocodes the provided locations.
+2. Calculates the driving route.
+3. Calculates total distance and estimated driving time.
+4. Applies the HOS scheduling rules.
+5. Adds pickup and drop-off service time.
+6. Schedules required 30-minute breaks.
+7. Schedules off-duty rest periods when necessary.
+8. Tracks the 70/8 cycle limit.
+9. Adds fuel stops based on mileage.
+10. Generates a complete trip timeline.
+11. Converts the timeline into daily ELD logs.
+12. Displays the route and trip information in an interactive React interface.
 
 ---
 
-## Project Structure
+# ✨ Features
+
+## 🚛 Trip Planning
+
+Users can select:
+
+- Current location
+- Pickup location
+- Drop-off location
+- Current cycle hours used
+
+The planner generates a complete schedule from the driver's current position through pickup and finally to the drop-off location.
+
+---
+
+## 🗺️ Interactive Route Map
+
+The application displays the calculated route using an interactive Leaflet map.
+
+The map includes:
+
+- Current location
+- Pickup location
+- Drop-off location
+- Fuel stops
+- Rest stops
+- Route geometry
+
+The route is calculated using OpenStreetMap-based routing services.
+
+---
+
+## 📏 Distance & Driving Time
+
+The system calculates:
+
+- Distance from current location to pickup
+- Distance from pickup to drop-off
+- Total trip distance
+- Estimated driving duration
+
+Distances are converted to miles and driving durations to hours for the HOS engine.
+
+---
+
+## ⛽ Fuel Stop Planning
+
+Fuel stops are automatically scheduled based on mileage.
+
+The current planning assumption is:
 
 ```text
-spotter-full-stack/
-│
-├── backend/
-│   ├── config/
-│   ├── trips/
-│   │   ├── geocoding.py
-│   │   ├── hos_engine.py
-│   │   ├── routing.py
-│   │   ├── views.py
-│   │   ├── urls.py
-│   │   └── ...
-│   │
-│   ├── manage.py
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ELDLog.jsx
-│   │   │   ├── ELDLog.css
-│   │   │   ├── TripMap.jsx
-│   │   │   └── TripMap.css
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── LandingPage.jsx
-│   │   │   ├── LandingPage.css
-│   │   │   ├── PlannerPage.jsx
-│   │   │   └── PlannerPage.css
-│   │   │
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   ├── package.json
-│   └── vite.config.js
-│
-└── README.md
+Fuel interval: 1,000 miles
+Fuel duration: 30 minutes
