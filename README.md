@@ -4,6 +4,12 @@ A full-stack truck trip planning application built as part of the **Spotter Full
 
 The application plans a truck trip based on **FMCSA Hours-of-Service (HOS) rules**, calculates the driving route and duration, schedules required breaks and rest periods, plans fuel stops, tracks the driver's cycle hours, and generates **ELD Daily Log Sheets** for the resulting trip schedule.
 
+### 🌐 Live Demo
+
+**Frontend:** [Spotter Trip Planner](https://spotter-full-stack-three.vercel.app)
+
+**Backend API:** [Spotter Backend](https://spotter-full-stack-9bzx.onrender.com)
+
 ---
 
 ## 📌 Overview
