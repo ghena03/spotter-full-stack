@@ -63,8 +63,11 @@ function PlannerPage() {
     setResult(null);
 
     try {
-      const apiResponse = await fetch(
-        "http://127.0.0.1:8000/api/trips/plan/",
+    const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
+const apiResponse = await fetch(
+  `${API_BASE_URL}/api/trips/plan/`,
         {
           method: "POST",
           headers: {
