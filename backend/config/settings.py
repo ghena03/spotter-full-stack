@@ -14,8 +14,9 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
+    "spotter-full-stack-9bzx.onrender.com",
     "localhost",
+    "127.0.0.1",
 ]
 
 
